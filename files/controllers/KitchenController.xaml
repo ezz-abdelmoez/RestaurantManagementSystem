@@ -1,0 +1,460 @@
+﻿<Window x:Class="SalesManagement.files.controllers.KitchenController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files.controllers"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+        WindowStartupLocation="CenterScreen"
+        Width="1000"
+        Height="600"
+        WindowStyle="None"
+             mc:Ignorable="d" >
+    <Window.Background>
+        <ImageBrush ImageSource="kitchen_img.jpg"/>
+    </Window.Background>
+    <Border CornerRadius="20" Background="#616161">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Padding="5,2" 
+              CornerRadius="10,10,0,0">
+                <Grid>
+                    
+                    <Label Content="{lex:Loc Key=kitchen}" Foreground="Yellow" 
+                           FontSize="30" Margin="10,0,0,0"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
+
+                        <Border Style="{StaticResource imag_border}"
+                                Margin="5"
+                                Height="40">
+                            <Image Source="/assets/img/refresh-button.png"
+                                   MouseDown="refresh_page_md"></Image>
+                        </Border>
+
+
+                        <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                                Height="40" Width="40" Margin="5,0,0,0">
+                            <Image Source="/assets/img/calc.png" Stretch="Fill" MouseDown="calc_open_img_md"/>
+                        </Border>
+
+                        <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                                Height="40" Width="40" Margin="5,0,0,0">
+                            <Image MouseDown="Hide_Img" Source="/assets/img/hide.png" Stretch="Fill"/>
+                        </Border>
+
+                        <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                                Height="40" Width="40" Margin="5,0,0,0">
+                            <Image MouseDown="min_max_img" Source="/assets/img/max_min.png" 
+                                   Stretch="Fill"/>
+                        </Border>
+
+                        <Border  Style="{StaticResource imag_border}"
+                                 HorizontalAlignment="Right" VerticalAlignment="Center" Padding="2" Grid.Column="1"
+                        >
+                            <Image MouseDown="close_img_md" ToolTip="خروج" Source="delete.png" Cursor="Hand"
+                                   Stretch="Fill" Margin="0" Width="40" Height="40"/>
+                        </Border>
+                    </StackPanel>
+            
+                </Grid>
+            </Border>
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="itemlist" Grid.Column="0" 
+                          HorizontalContentAlignment="Center" 
+                       HorizontalAlignment="Left" Background="Transparent"
+                      ItemsSource="{Binding}">
+                    <ListView.View>
+                        <GridView>
+
+                            <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                            DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                            <GridViewColumn Header="{lex:Loc Key=item}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label 
+                                            Width="300" >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=qty}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Path=SumOfnofood}" 
+                                                           MinWidth="150"  FontSize="20"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Grid Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="ord4" Row="0" Margin="5" ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Name="ord" CornerRadius="20" BorderBrush="Black" 
+                                BorderThickness="2"
+                                Grid.Column="1">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="10" Color="Black"/>
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" Padding="5,2"
+                                        Background="{StaticResource greenLightLinear}"
+                                    CornerRadius="10,10,0,0" Height="40">
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label x:Name="ordno" Content="159753" Foreground="Yellow" HorizontalAlignment="Left" Margin="5,0"
+                                                FontSize="24"/>
+                                            <Label x:Name="ordtyp" Content="تيك اوى" Foreground="White" HorizontalAlignment="Left" Margin="5,0"
+                                                FontSize="24"/>
+                                        </StackPanel>
+                                        <Image MouseDown="seen_img_md" HorizontalAlignment="Right" ToolTip="تم" Source="Ok.ico"
+                                            Cursor="Hand" Stretch="Fill" Margin="0" Width="38" Height="38"/>
+                                    </Grid>
+                                </Border>
+                                <Grid Row="1">
+                                    <ListView  x:Name="ordlist" HorizontalContentAlignment="Center"
+                                         Grid.Column="2" 
+                                               ItemsSource="{Binding}" Background="{x:Null}"
+                                        BorderBrush="{x:Null}">
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                                DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                                <GridViewColumn Header="{lex:Loc Key=item}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label 
+                                                                Width="400" >
+                                                                <Label.Content>
+                                                                    <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                                                </Label.Content>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                                <GridViewColumn Header="{lex:Loc Key=qty}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label Content="{Binding Path=no_food}" 
+                                                           MinWidth="150" FontSize="20"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </Grid>
+                                <Border Height="35" CornerRadius="0,0,10,10"
+                                    Grid.Row="2">
+                                    <Grid>
+                                        <Label x:Name="ordtime" Content="03:12" Foreground="White" HorizontalAlignment="Right" Margin="10,0"/>
+                                        <Border BorderThickness="2" CornerRadius="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                            >
+                                            <Label x:Name="waitno" Content="" Height="40" Width="40" HorizontalContentAlignment="Center"/>
+                                        </Border>
+                                        <Label x:Name="ordate" Content="11/10/2017" Foreground="Yellow" HorizontalAlignment="Left" Margin="10,0"/>
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <Grid Row="1" ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Border Name="ord1" Margin="10,5" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Grid.Column="1"
+                                HorizontalAlignment="Center">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="10" Color="Black"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="32"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="28"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Padding="5,2" 
+                                        CornerRadius="10,10,0,0" Height="32">
+                                        <Grid>
+                                            <Label x:Name="ord1typ" Content="تيك اوى" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="18"/>
+                                            <Label x:Name="ord1no" Content="159753" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="18"/>
+                                        </Grid>
+                                    </Border>
+                                    <ListView x:Name="ord1list" Grid.Row="1" HorizontalContentAlignment="Center"
+                                              Background="Transparent"
+                                        Grid.Column="2" HorizontalAlignment="Center"
+                                         ItemsSource="{Binding}">
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                                DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                                <GridViewColumn Header="{lex:Loc Key=item}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label 
+                                                           Width="200" >
+                                                                <Label.Content>
+                                                                    <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                                                </Label.Content>
+
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                                <GridViewColumn Header="{lex:Loc Key=qty}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label Content="{Binding Path=no_food}" 
+                                                           MinWidth="150" FontSize="20"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Border Height="28" CornerRadius="0,0,10,10"
+                                        Grid.Row="2">
+                                        <Grid>
+                                            <Label x:Name="ord1time" Content="03:12" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="16"/>
+                                            <Image MouseDown="kitch_img_md_1" ToolTip="تم" Source="delete.png" Cursor="Hand"
+                                                Stretch="Fill" Margin="0" Width="28" Height="28"/>
+                                            <Label x:Name="ord1date" Content="11/102017" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="16"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Name="ord2" Margin="10,5" CornerRadius="10"
+                                    BorderBrush="Black" BorderThickness="2" Grid.Column="1">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="10" Color="Black"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="32"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="28"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Padding="5,2"
+                                        CornerRadius="10,10,0,0" Height="32">
+                                        <Grid>
+                                            <Label x:Name="ord2typ" Content="تيك اوى" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="18"/>
+                                            <Label x:Name="ord2no" Content="159753" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="18"/>
+                                        </Grid>
+                                    </Border>
+                                    <ListView x:Name="ord2list" Grid.Row="1" HorizontalContentAlignment="Center" 
+                                              Background="Transparent"  HorizontalAlignment="Center"
+                                        ItemsSource="{Binding}" Margin="0,2,0,26" Grid.RowSpan="2">
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                                DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                                <GridViewColumn Header="{lex:Loc Key=item}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label 
+                                                           Width="200" >
+                                                                <Label.Content>
+                                                                    <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                                                </Label.Content>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                                <GridViewColumn Header="{lex:Loc Key=qty}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label Content="{Binding Path=no_food}" 
+                                                           MinWidth="150" FontSize="20"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Border Height="28" CornerRadius="0,0,10,10"
+                                        Grid.Row="2">
+                                        <Grid>
+                                            <Label x:Name="ord2time" Content="03:12" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="16"/>
+                                            <Image MouseDown="kitch_img_md_2" ToolTip="تم" Source="delete.png" Cursor="Hand"
+                                                Stretch="Fill" Margin="0" Width="28" Height="28"/>
+                                            <Label x:Name="ord2date" Content="11/102017" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="16"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Name="ord3" Margin="10,5" CornerRadius="10" 
+                                    BorderBrush="Black" BorderThickness="2" 
+                                    Grid.Column="1">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="10" ShadowDepth="10" Color="Black"/>
+                                </Border.Effect>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="32"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="28"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0" Padding="5,2" 
+                                        CornerRadius="10,10,0,0" Height="32">
+                                        <Grid>
+                                            <Label x:Name="ord3typ" Content="تيك اوى" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="18"/>
+                                            <Label x:Name="ord3no" Content="159753" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="18"/>
+                                        </Grid>
+                                    </Border>
+                                    <ListView x:Name="ord3list" Grid.Row="1" HorizontalContentAlignment="Center" FontWeight="Bold"
+                                        Grid.Column="2" Background="Transparent" HorizontalAlignment="Center"
+                                    FontSize="16" ItemsSource="{Binding}">
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                                DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                                <GridViewColumn Header="{lex:Loc Key=item}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label 
+                                                                Width="200" >
+                                                                <Label.Content>
+                                                                    <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                                                </Label.Content>
+                                                            </Label>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+
+                                                <GridViewColumn Header="{lex:Loc Key=qty}">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <Label Content="{Binding Path=no_food}" 
+                                                           MinWidth="150" FontSize="20"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                    <Border Height="28" CornerRadius="0,0,10,10"
+                                        Grid.Row="2">
+                                        <Grid>
+                                            <Label x:Name="ord3time" Content="03:12" Foreground="White" HorizontalAlignment="Left" Margin="10,0"
+                                                FontSize="16"/>
+                                            <Image MouseDown="kitch_img_md_3" ToolTip="تم" Source="delete.png" Cursor="Hand"
+                                                Stretch="Fill" Margin="0" Width="28" Height="28"/>
+                                            <Label x:Name="ord3date" Content="11/102017" Foreground="Yellow" HorizontalAlignment="Right" Margin="10,0"
+                                                FontSize="16"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Border BorderBrush="Black" BorderThickness="0" CornerRadius="0,0,10,10"
+               Margin="0" Grid.Row="2">
+                <ListView x:Name="orders_listview" FontSize="18" HorizontalContentAlignment="Center" Margin="0,0,0,5"
+                      FontWeight="Bold" Grid.Column="0" ItemsSource="{Binding}" Background="{x:Null}"
+                      BorderBrush="{x:Null}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+                         ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+                         MinWidth="{Binding ItemWidth, RelativeSource={RelativeSource Self}}"
+                         ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Background="{DynamicResource greenBluredLinear}"
+                                                Padding="5" CornerRadius="20">
+                                            <Border.Effect>
+                                                <DropShadowEffect BlurRadius="10" ShadowDepth="10" Color="Black"/>
+                                            </Border.Effect>
+                                            <StackPanel>
+                                                <Label HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,1,2" Width="75"
+                                                Foreground="Yellow" Content="{Binding Path=order_type}"/>
+                                                <Label HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,1,2" Width="75"
+                                                Content="{Binding Path=order_type_no}"/>
+                                                <Label HorizontalContentAlignment="Center" BorderBrush="Black" BorderThickness="1,0,1,2" Width="75"
+                                                ContentStringFormat="HH:mm" Foreground="Yellow" Content="{Binding Path=FirstOfopdate}"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </Grid>
+
+    </Border>
+</Window>

@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{506BA9EB-DC93-4611-A1BA-072E1838AAE4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SalesManagement</RootNamespace>
+    <AssemblyName>SalesManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>food-and-drink-5727926-4800418.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Design">
+      <HintPath>C:\Users\ezzel\Downloads\references\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win64_x64\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFLocalizeExtension, Version=3.9.4.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
+      <HintPath>packages\WPFLocalizeExtension.3.9.4\lib\net40\WPFLocalizeExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="XAMLMarkupExtensions, Version=2.1.3.0, Culture=neutral, PublicKeyToken=c726e0262981a1eb, processorArchitecture=MSIL">
+      <HintPath>packages\XAMLMarkupExtensions.2.1.3\lib\net40\XAMLMarkupExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="DataSets\DataSet1.cs">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSets\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\LoginController.xaml.cs">
+      <DependentUpon>LoginController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDelivery.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDelivery.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportDeliveryEn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDeliveryEn.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOrder.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportOrder.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOrderEn.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportOrderEn.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSala7.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportSala7.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportSala7En.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportSala7En.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Resources\LocalizedLangs.cs" />
+    <Page Include="assets\img\appstyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="assets\img\brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="assets\img\listviewstyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="assets\img\menustyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Dictionaries\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\LightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\AddEmpController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\AttendController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\CashierAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\CashierController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\CateController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\CategoryController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\ClientController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\DeliveryController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\DeliveryOrdersController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\EmployeeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\ExpensesController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\HolidaysController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\KitchenController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\LoginController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\OfferController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\OrdersController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\ParcodeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\PreparationController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\PurchaseController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SafeController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SalesController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SalesReportController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SettingsController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SpendsController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\StoreController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\controllers\SuppliersController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\test\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="files\windows\PopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="files\classes\CheckTables.cs" />
+    <Compile Include="files\classes\CommonMethods.cs" />
+    <Compile Include="files\classes\DB.cs" />
+    <Compile Include="files\classes\MyPrinter.cs" />
+    <Compile Include="files\classes\Printer1.cs" />
+    <Compile Include="files\classes\ValidationKeyPress.cs" />
+    <Compile Include="files\classes\WindowBasicControl.cs" />
+    <Compile Include="files\controllers\AddEmpController.xaml.cs">
+      <DependentUpon>AddEmpController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\AttendController.xaml.cs">
+      <DependentUpon>AttendController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\CashierAccounts.xaml.cs">
+      <DependentUpon>CashierAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\CashierController.xaml.cs">
+      <DependentUpon>CashierController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\CateController.xaml.cs">
+      <DependentUpon>CateController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\CategoryController.xaml.cs">
+      <DependentUpon>CategoryController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\ClientController.xaml.cs">
+      <DependentUpon>ClientController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\DeliveryController.xaml.cs">
+      <DependentUpon>DeliveryController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\DeliveryOrdersController.xaml.cs">
+      <DependentUpon>DeliveryOrdersController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\EmployeeController.xaml.cs">
+      <DependentUpon>EmployeeController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\ExpensesController.xaml.cs">
+      <DependentUpon>ExpensesController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\HolidaysController.xaml.cs">
+      <DependentUpon>HolidaysController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\KitchenController.xaml.cs">
+      <DependentUpon>KitchenController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\OfferController.xaml.cs">
+      <DependentUpon>OfferController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\OrdersController.xaml.cs">
+      <DependentUpon>OrdersController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\ParcodeController.xaml.cs">
+      <DependentUpon>ParcodeController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\PreparationController.xaml.cs">
+      <DependentUpon>PreparationController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\PurchaseController.xaml.cs">
+      <DependentUpon>PurchaseController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SafeController.xaml.cs">
+      <DependentUpon>SafeController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SalesController.xaml.cs">
+      <DependentUpon>SalesController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SalesReportController.xaml.cs">
+      <DependentUpon>SalesReportController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SettingsController.xaml.cs">
+      <DependentUpon>SettingsController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SpendsController.xaml.cs">
+      <DependentUpon>SpendsController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\StoreController.xaml.cs">
+      <DependentUpon>StoreController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\controllers\SuppliersController.xaml.cs">
+      <DependentUpon>SuppliersController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\test\TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="files\windows\PopupWindow.xaml.cs">
+      <DependentUpon>PopupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resources\Langs.ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Langs.ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Langs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Langs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="ReportDelivery.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportDelivery.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDeliveryEn.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportDeliveryEn.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOrder.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportOrder.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOrderEn.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportOrderEn.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSala7.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportSala7.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSala7En.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReportSala7En.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Langs.ar.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Langs.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Langs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Langs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="DataSets\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\fonts\Raleway-Black.ttf" />
+    <Resource Include="assets\fonts\Raleway-BlackItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Bold.ttf" />
+    <Resource Include="assets\fonts\Raleway-BoldItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-ExtraBold.ttf" />
+    <Resource Include="assets\fonts\Raleway-ExtraBoldItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-ExtraLight.ttf" />
+    <Resource Include="assets\fonts\Raleway-ExtraLightItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Italic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Light.ttf" />
+    <Resource Include="assets\fonts\Raleway-LightItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Medium.ttf" />
+    <Resource Include="assets\fonts\Raleway-MediumItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Regular.ttf" />
+    <Resource Include="assets\fonts\Raleway-SemiBold.ttf" />
+    <Resource Include="assets\fonts\Raleway-SemiBoldItalic.ttf" />
+    <Resource Include="assets\fonts\Raleway-Thin.ttf" />
+    <Resource Include="assets\fonts\Raleway-ThinItalic.ttf" />
+    <Resource Include="assets\img\1350382515_purple-transfer.png" />
+    <Resource Include="assets\img\1350626620_filter_data.png" />
+    <Resource Include="assets\img\1351621056_alarmd.png" />
+    <Resource Include="assets\img\1351621200_palet03.png" />
+    <Resource Include="assets\img\1352097232_config-users.png" />
+    <Resource Include="assets\img\3meals.png" />
+    <Resource Include="assets\img\3meals1.png" />
+    <Resource Include="assets\img\alert.png" />
+    <Resource Include="assets\img\asdsadsa.png" />
+    <Resource Include="assets\img\back.png" />
+    <Resource Include="assets\img\background2.jpg" />
+    <Resource Include="assets\img\backup.png" />
+    <Resource Include="assets\img\blueflame.jpg" />
+    <Resource Include="assets\img\calc.png" />
+    <Resource Include="assets\img\calender.png" />
+    <Resource Include="assets\img\cash-register-icon.png" />
+    <Resource Include="assets\img\cement.jpg" />
+    <Resource Include="assets\img\crystal_project_leftarrow.png" />
+    <Resource Include="assets\img\cut.png" />
+    <Resource Include="assets\img\database-backup-cd-512.png" />
+    <Resource Include="assets\img\day-off.png" />
+    <Resource Include="assets\img\delete.png" />
+    <Resource Include="assets\img\download2.png" />
+    <Resource Include="assets\img\forward.png" />
+    <Resource Include="assets\img\hide.png" />
+    <Resource Include="assets\img\max_min.png" />
+    <Resource Include="assets\img\mylogo.png" />
+    <Resource Include="assets\img\new-icon.png" />
+    <Resource Include="assets\img\new.png" />
+    <Resource Include="assets\img\numbers-black-icon.png" />
+    <Resource Include="assets\img\ok.ico" />
+    <Resource Include="assets\img\ok.png" />
+    <Resource Include="assets\img\options.png" />
+    <Resource Include="assets\img\papermoney.png" />
+    <Resource Include="assets\img\pasdsa.png" />
+    <Resource Include="assets\img\phone.png" />
+    <Resource Include="assets\img\portland-restaurants.jpg" />
+    <Resource Include="assets\img\previos_sail.png" />
+    <Resource Include="assets\img\printer.png" />
+    <Resource Include="assets\img\redo.png" />
+    <Resource Include="assets\img\refresh-button.png" />
+    <Resource Include="assets\img\restart.png" />
+    <Resource Include="assets\img\restlogo.jpg" />
+    <Resource Include="assets\img\restor.png" />
+    <Resource Include="assets\img\safe.png" />
+    <Resource Include="assets\img\sales2.png" />
+    <Resource Include="assets\img\save.png" />
+    <Resource Include="assets\img\search.png" />
+    <Resource Include="assets\img\settings-backup-sync-icon.png" />
+    <Resource Include="assets\img\shadow_b.png" />
+    <Resource Include="assets\img\shadow_bl.png" />
+    <Resource Include="assets\img\shadow_br.png" />
+    <Resource Include="assets\img\shadow_l.png" />
+    <Resource Include="assets\img\shadow_r.png" />
+    <Resource Include="assets\img\shadow_t.png" />
+    <Resource Include="assets\img\shadow_tl.png" />
+    <Resource Include="assets\img\shadow_tr.png" />
+    <Resource Include="assets\img\wallet.png" />
+    <Resource Include="assets\img\workers.png" />
+    <Resource Include="assets\img\write1.png" />
+    <Resource Include="assets\img\zizo.jpg" />
+    <Resource Include="assets\img\zsdasad.jpg" />
+    <Resource Include="logorest.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="max_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="calc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\test\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\1362753193_whack_totalcommander.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\windows\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\windows\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\windows\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\test\calender.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\windows\hide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\windows\max_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\previos_sail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\write1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\safe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\backup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\restor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\day-off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\papermoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="files\controllers\ok.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.png" />
+    <Resource Include="files\controllers\login_background.jpg" />
+    <Resource Include="files\controllers\kitchen_img.jpg" />
+    <Resource Include="dark.png" />
+    <Resource Include="assets\dark.png" />
+    <Resource Include="assets\kitchen_img.jpg" />
+    <Resource Include="assets\light.png" />
+    <Resource Include="assets\login_background.jpg" />
+    <Resource Include="dark_back.jpg" />
+    <Resource Include="food-and-drink-5727926-4800418.ico" />
+    <Content Include="FoodDb.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

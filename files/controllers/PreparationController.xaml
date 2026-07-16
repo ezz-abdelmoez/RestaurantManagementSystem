@@ -1,0 +1,305 @@
+﻿<UserControl x:Class="SalesManagement.files.controllers.PreparationController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files.controllers"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+             mc:Ignorable="d">
+    <Border CornerRadius="20" Background="{DynamicResource pageBackground}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            
+
+            <Border Grid.Row="1" Padding="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Border  
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Content="{lex:Loc Key=cate}"/>
+
+                            <ComboBox x:Name="cate_combo" IsEditable="True"  Grid.Row="1"
+                                       SelectionChanged="cate_combo_SelectionChanged">
+                            </ComboBox>
+
+                        </Grid>
+                    </Border>
+                    <Border  
+                                    
+                        
+                        Margin="10 0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="{lex:Loc Key=item}"/>
+
+                            <ComboBox x:Name="item_name_combo" IsEditable="True"  Grid.Row="1"
+                                    >
+                            </ComboBox>
+
+                        </Grid>
+                    </Border>
+                    <Border  
+                        Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="{lex:Loc Key=qty}"/>
+
+                            <TextBox x:Name="qty_tb" MinWidth="100" MaxHeight="300" Grid.Row="1"
+                                     PreviewTextInput="qty_tb_PreviewTextInput"
+                                      Height="40"
+                                      FontSize="18"
+                                      Margin="0 0 10 0">
+                            </TextBox>
+
+                        </Grid>
+                    </Border>
+                    <Button Content="{lex:Loc Key=save}" MinWidth="100"
+                            Style="{StaticResource dangerBtn}"
+                            Click="register_preb_btn_click"
+                            Margin="20 0 0 0"
+                            Grid.Column="3"
+                            Height="50"/>
+                </Grid>
+            </Border>
+
+            <TabControl Grid.Row="2" Background="Transparent">
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=prep}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="prebListview"  Background="{DynamicResource subBackground}"
+                                  HorizontalContentAlignment="Stretch"
+                                  MaxHeight="500"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                    DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                    <GridViewColumn Header="{lex:Loc Key=item}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Width="200"
+                                                       Foreground="{DynamicResource textColor}">
+                                                    <Label.Content>
+                                                        <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                                    </Label.Content>
+                                                </Label>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="{lex:Loc Key=qty}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=qty}" 
+                                               MinWidth="150" Padding="5" FontSize="20"
+                                                       Foreground="{DynamicResource textColor}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="{lex:Loc Key=date}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=food_date}" 
+                                                    MinWidth="150" Padding="5" FontSize="20" 
+                                                       Foreground="{DynamicResource textColor}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+                        <Border CornerRadius="20"
+                            Height="50"
+                            Grid.Row="1">
+
+                            <Border  
+                                 Margin="10 0"
+                        Grid.Column="2"
+                    Height="40"
+                                HorizontalAlignment="Left"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=total}"/>
+
+                                    <TextBox x:Name="total_preb_qty_food_tb" MinWidth="100" MaxHeight="300" Grid.Column="1"
+                                      Height="40"
+                                 IsEnabled="False"
+                                      FontSize="18">
+                                    </TextBox>
+
+                                </Grid>
+                            </Border>
+
+
+                        </Border>
+                    </Grid>
+                    
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=exist}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="existListview"  MaxHeight="500"
+                                  Background="{DynamicResource subBackground}"
+                                  HorizontalContentAlignment="Stretch"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ItemsSource="{Binding}">
+
+                            <ListView.View>
+                                <GridView>
+
+                                    <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                                    DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                                    <GridViewColumn Header="{lex:Loc Key=item}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=food}" 
+                                               MinWidth="150" Padding="5" FontSize="20"
+                                                       Foreground="{DynamicResource textColor}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="{lex:Loc Key=qty}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=qty}" 
+                                               MinWidth="100" Padding="5" FontSize="20"
+                                                       Foreground="{DynamicResource textColor}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn Header="{lex:Loc Key=minimum}">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=min_level}" 
+                                               MinWidth="150" Padding="5" FontSize="20"
+                                                       Foreground="{DynamicResource textColor}"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+
+                        </ListView>
+                        <Border CornerRadius="20"
+                    Margin="5"
+                    Height="60"
+                    Grid.Row="1">
+
+                            <Border  
+                                 Margin="10 0"
+                        Grid.Column="2"
+                    Height="40"
+                                HorizontalAlignment="Left"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=total_exist}"/>
+
+                                    <TextBox x:Name="total_exist_qty_food_tb" MinWidth="100" MaxHeight="300" Grid.Column="1"
+                                      Height="40"
+                                 IsEnabled="False"
+                                      FontSize="18">
+                                    </TextBox>
+
+                                </Grid>
+                            </Border>
+
+
+                        </Border>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
+            
+
+        </Grid>
+    </Border>
+</UserControl>

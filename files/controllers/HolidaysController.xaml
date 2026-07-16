@@ -1,0 +1,332 @@
+﻿<UserControl x:Class="SalesManagement.files.controllers.HolidaysController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files.controllers"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+             mc:Ignorable="d" >
+
+
+    <Border Background="#B2D9D9D9"
+            CornerRadius="0 0 20 20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="0"
+                            CornerRadius="20 20 20 0"
+                            Background="{DynamicResource orangeLightLinear}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{lex:Loc Key=month}" />
+
+                        <TextBox  Name="month_tb"
+                                 TextChanged="month_tb_TextChanged"
+                                         TextAlignment="Center"
+                                         Text="11"
+                                  MaxLength="2"
+                                  PreviewTextInput="month_tb_PreviewTextInput"
+                                         MinWidth="60" Width="60" Grid.Row="1"/>
+
+                    </Grid>
+
+                </Border>
+
+                <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="1"
+                            CornerRadius="20 20 20 0"
+                            Background="{DynamicResource orangeLightLinear}">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{lex:Loc Key=year}"/>
+
+                        <TextBox x:Name="year_tb"  Grid.Row="1"
+                                 TextChanged="month_tb_TextChanged"
+                                         TextAlignment="Center"
+                                 PreviewTextInput="month_tb_PreviewTextInput"
+                                         MinWidth="60" Width="80"
+                                 MaxLength="4"
+                                         Text="2022"/>
+
+                    </Grid>
+
+                </Border>
+
+
+            </Grid>
+
+            <Border Margin="5 5 5 0"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            CornerRadius="20 20 20 0"
+                            Style="{StaticResource border_shadow}">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="{lex:Loc Key=add_holiday}"
+                           FontWeight="Bold" FontSize="20"
+                           Foreground="{DynamicResource textColor}"
+                           Margin="5"/>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                            CornerRadius="20 20 20 0"
+                            Background="{StaticResource orangeLightLinear}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{lex:Loc Key=job}"/>
+
+                                <ComboBox  MinWidth="150"
+                                           IsEditable="True"
+                                          Name="jobs_combo"
+                                           SelectionChanged="jobs_combo_SelectionChanged"
+                                         Grid.Row="1"/>
+
+                            </Grid>
+
+                        </Border>
+
+                        <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="1"
+                            CornerRadius="20 20 20 0"
+                            Background="{StaticResource orangeLightLinear}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{lex:Loc Key=emp1}"/>
+
+                                <ComboBox 
+                                    Name="emp_combo"
+                                    IsEditable="True"
+                                    SelectionChanged="emp_combo_SelectionChanged"
+                                         MinWidth="150" Grid.Row="1" Margin="0,1,0,0"/>
+
+                            </Grid>
+
+                        </Border>
+
+                        <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="2"
+                            CornerRadius="20 20 20 0"
+                            Background="{StaticResource orangeLightLinear}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{lex:Loc Key=balance}"/>
+
+                                <TextBox x:Name="balance_tb"
+                                         MaxWidth="150" MinWidth="100" Grid.Row="1"
+                                         TextAlignment="Center"
+                                         IsEnabled="False"/>
+
+                            </Grid>
+
+                        </Border>
+
+                        <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="3"
+                            CornerRadius="20 20 20 0"
+                            Background="{StaticResource orangeLightLinear}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{lex:Loc Key=operation}"/>
+
+                                <ComboBox Name="op_combo" MaxWidth="200" Grid.Row="1"
+                                          FontSize="18" SelectedIndex="0"
+                                          Margin="5">
+                                    <ComboBoxItem Content="{lex:Loc Key=decrease_balance}"/>
+                                    <ComboBoxItem Content="{lex:Loc Key=increase_balance}"/>
+                                    <ComboBoxItem Content="{lex:Loc Key=settlement}"/>
+                                </ComboBox>
+
+                            </Grid>
+
+                        </Border>
+
+                        <Border Margin="5 5 5 10"   
+                            HorizontalAlignment="Center"
+                                Grid.Column="4"
+                            CornerRadius="20 20 20 0"
+                            Background="{StaticResource orangeLightLinear}">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{lex:Loc Key=value}"/>
+
+                                <TextBox x:Name="value_tb"
+                                         MaxWidth="150" MinWidth="100" Grid.Row="1"
+                                         TextAlignment="Center"/>
+
+                            </Grid>
+
+                        </Border>
+
+
+                        <Border Style="{StaticResource imag_border}" Grid.Row="1"
+                                Grid.ColumnSpan="5"
+                                HorizontalAlignment="Center"
+                                Width="80" Height="80"
+                                >
+                            <Image Source="save.png" MouseDown="add_holiday_mouse_down_img"/>
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+            <ListView x:Name="holidayListview" 
+                      Grid.Row="2"
+                                  HorizontalContentAlignment="Stretch"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <Button Content="{lex:Loc Key=job}" 
+                                            MinWidth="100" 
+                                            Style="{StaticResource calcBtn1}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=eccup}" 
+                                               Foreground="{StaticResource textColor}"
+                                               MinWidth="150" Padding="5" FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <Button Content="{lex:Loc Key=name}" 
+                                            MinWidth="150" 
+                                            Style="{StaticResource calcBtn1}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=emp}" 
+                                               Foreground="{StaticResource textColor}"
+                                               MinWidth="150" Padding="5" FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <Button Content="{lex:Loc Key=operation}" 
+                                            MinWidth="150" 
+                                            Style="{StaticResource calcBtn1}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=act_type}" 
+                                               Foreground="{StaticResource textColor}"
+                                               MinWidth="150" Padding="5" FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <Button Content="{lex:Loc Key=date}" 
+                                            MinWidth="150" 
+                                            Style="{StaticResource calcBtn1}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=act_date}" 
+                                               Foreground="{StaticResource textColor}"
+                                               MinWidth="150" Padding="5" FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn>
+                            <GridViewColumn.Header>
+                                <Button Content="{lex:Loc Key=amount}"
+                                            MinWidth="100" 
+                                            Style="{StaticResource calcBtn1}"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Path=quant}"
+                                               Foreground="{StaticResource textColor}"
+                                               MinWidth="100" Padding="5" FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+
+        </Grid>
+    </Border>
+
+
+</UserControl>

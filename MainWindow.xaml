@@ -1,0 +1,281 @@
+﻿<Window x:Class="SalesManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesManagement"
+        xmlns:main_ctr="clr-namespace:SalesManagement.files"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+        Loaded="Window_Loaded"
+        MouseDown="Window_MouseDown"
+        Closed="Window_Closed"
+        mc:Ignorable="d"
+        Title="SalesManagement" 
+        Height="800" 
+        Width="1200" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        WindowState="Maximized" Icon="icon.png" Background="Transparent">
+    <!-- <Window.Background> -->
+    <!--     <ImageBrush ImageSource="logorest.jpg"/> -->
+    <!-- </Window.Background> -->
+
+    <Window.Resources>
+
+        <SolidColorBrush x:Key="PrimaryBlueColor" Color="#348ef6"></SolidColorBrush>
+        <SolidColorBrush x:Key="SecondaryBlueColor" Color="#3ff2ff"></SolidColorBrush>
+        
+        <SolidColorBrush x:Key="PrimaryTextColor" Color="#fff"></SolidColorBrush>
+        <SolidColorBrush x:Key="SecondaryTextColor" Color="#bbc1d1"></SolidColorBrush>
+        
+        <SolidColorBrush x:Key="PrimaryGrayColor" Color="#bbc1d1"></SolidColorBrush>
+        
+        <Style TargetType="TabItem" x:Key="main_tab_style">
+            <Setter Property="Background" Value="Gray"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource SecondaryTextColor}"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Margin" Value="0 0 5 0"></Setter>
+            <Setter Property="Padding" Value="10 8"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <StackPanel Orientation="Horizontal" >
+                            <Border CornerRadius="5"  
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Margin="{TemplateBinding Margin}">
+
+                                <StackPanel Orientation="Horizontal" >
+                                    <ContentPresenter HorizontalAlignment="Center" MinWidth="100"
+                                                      VerticalAlignment="Center"
+                                                  SnapsToDevicePixels="True"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  ContentSource="Header"
+                                                  Focusable="True"></ContentPresenter>
+
+                                    <Border CornerRadius="50" Height="20" Width="20"
+                                        MouseDown="delete_tab_md"
+                                        Style="{DynamicResource imag_border}">
+                                        <Image  Source="/assets/img/delete.png"
+                                    ></Image>
+                                    </Border>
+
+                                </StackPanel>
+
+                            </Border>
+                            
+                       
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" 
+                                        Value="{DynamicResource SecondaryBlueColor}"
+                                        ></Setter>
+                                <Setter Property="Foreground" Value="{DynamicResource PrimaryGrayColor}"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" 
+                                        Value="{DynamicResource PrimaryBlueColor}"
+                                ></Setter>
+                                <Setter Property="Foreground" 
+                                        Value="{DynamicResource PrimaryTextColor}"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources> 
+
+
+    <Grid>
+        <TabControl Background="Transparent" Name="TabControl1" Margin="0 0 0 50"
+                    ItemContainerStyle="{StaticResource main_tab_style}" SelectionChanged="TabControl1_SelectionChanged"
+                              >
+
+        </TabControl>
+
+     
+
+             <Border CornerRadius="10" 
+                        Background="{DynamicResource orangeLightLinear}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+
+
+                            <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                Height="40"
+                                >
+
+                                <Button Name="addBtn"  Height="40" Width="80" VerticalAlignment="Top" HorizontalAlignment="Right"
+                                        Click="add_tab_btn_click"
+                                        Content="add" >
+                                </Button>
+
+                                <ComboBox Name="lan_change_combo" Text="Language" Height="40"
+                                          Width="120" IsEditable="False"
+                                          Margin="10 0"
+                                          HorizontalContentAlignment="Center" SelectionChanged="lan_change_combo_SelectionChanged_1">
+                                    <ComboBoxItem Content="العربية" HorizontalContentAlignment="Center"/>
+                                    <ComboBoxItem Content="English" HorizontalContentAlignment="Center"/>
+                                </ComboBox>
+
+                                <Border CornerRadius="20" Margin="3" MaxWidth="130" Width="130"
+                                    Background="{StaticResource blueLightRadial}">
+                                    <Label Content="Hi Admin" Foreground="White" 
+                                       MouseDown="logout_lb_mouse_down"
+                                   Name="log_name_lb"
+                                   FontSize="16"
+                                   FontFamily="{StaticResource raleway_medium}"
+                                   HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"/>
+
+                                </Border>
+
+                                <Border Style="{StaticResource imag_border}"
+                                    Background="White"
+                                BorderThickness="2" CornerRadius="50"
+                                    Height="40" Width="40" Margin="5,0,0,0">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10" BlurRadius="20" Color="{StaticResource shadow1}"/>
+                                    </Border.Effect>
+                                    <Image x:Name="change_mode_img" Source="/assets/dark.png" MouseDown="change_theme_img_md" Stretch="Fill"/>
+                                </Border>
+
+                                <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                            Height="40" Width="40" Margin="5,0,0,0">
+                                    <Image Source="/assets/img/calc.png" Stretch="Fill" MouseDown="calc_open_img_md"/>
+                                </Border>
+
+                                <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                            Height="40" Width="40" Margin="5,0,0,0">
+                                    <Image MouseDown="Hide_Img" Source="/assets/img/hide.png" Stretch="Fill"/>
+                                </Border>
+
+                                <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                            Height="40" Width="40" Margin="5,0,0,0">
+                                    <Image MouseDown="min_max_img" Source="/assets/img/max_min.png" 
+                                   Stretch="Fill"/>
+                                </Border>
+
+                                <Border Style="{StaticResource imag_border}"
+                                BorderThickness="2" CornerRadius="50"
+                            Height="40" Width="40" Margin="5,0,0,0">
+                                    <Image  
+                                MouseDown="exit_img"
+                                   Cursor="Hand" Source="/assets/img/delete.png" Stretch="Fill"
+                                ToolTip="Exit"/>
+                                </Border>
+
+
+                            </StackPanel>
+
+                        </Border>
+
+        <!-- <Button  Height="40" Width="80" VerticalAlignment="Top" Padding="10" HorizontalAlignment="Right" -->
+        <!--         Content="remove" Click="remove_tab_btn_click" Style="{StaticResource dangerBtn}"></Button> -->
+      
+
+           <!--#region Bottom conponent-->
+            <!--bottom left-->
+            <Border 
+            Background="{DynamicResource orangeLightLinear}"
+            CornerRadius="20, 20, 0, 0"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left">
+
+
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5" Width="130"
+                        BorderThickness="1 0 0 2" BorderBrush="White">
+
+                        <Label Content="Satureday" Name="day_of_week_lb" FontSize="20"/>
+                    </Border>
+                    <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5" Width="130" 
+                        BorderThickness="1 0 0 2" BorderBrush="White">
+
+                        <Label Content="Satureday" Name="time_lb" FontSize="20"/>
+                    </Border>
+                    <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5" 
+                        BorderThickness="1 0 0 2" BorderBrush="White">
+
+                        <Label Content="12:15:00 PM" Name="date_lb" FontSize="20"/>
+                    </Border>
+                    <Border CornerRadius="20, 20, 20, 0" Height="35" Margin="5" Padding="10 0"
+                        Background="{StaticResource blueDarkRadial}">
+                        <Label Content="{lex:Loc Key=created_by}" Width="auto" Foreground="White" 
+                       />
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!--bottom right-->
+            <Border Height="50" Width="400" VerticalAlignment="Bottom"
+                MouseDown="showShortsWin_md" Cursor="Hand"
+                Background="{DynamicResource pageBackground}"
+                CornerRadius="20"
+            HorizontalAlignment="Right">
+                <Grid>
+                    <Border Height="40"  Width="120"
+                    CornerRadius="20, 0, 20, 0"
+                    HorizontalAlignment="Right"
+                    Background="{DynamicResource orangeLightLinear}">
+
+                        <Label Content="{lex:Loc Key=shorts}"/>
+                    </Border>
+
+                    <Canvas SizeChanged="canMain_SizeChanged" 
+                        x:Name="canMain" ClipToBounds="true" Height="30"
+                        
+                    VerticalAlignment="Center" Margin="0,0,70,0">
+                        <TextBlock x:Name="tbmarquee" FlowDirection="RightToLeft" Margin="0" FontSize="20" 
+                               Foreground="{DynamicResource textColor}"
+                               FontFamily="{DynamicResource raleway_bold_italic}"
+                               Text="{lex:Loc Key=created_by}"
+                        VerticalAlignment="Bottom" FontWeight="Bold"/>
+                    </Canvas>
+
+                    <Border HorizontalAlignment="Left"
+                    CornerRadius="20 0 20 0"
+                    Width="50"
+                    Height="30" RenderTransformOrigin="0.5,0.5"
+                        Background="{DynamicResource orangeLightLinear}"
+                    >
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+
+                        <Label Content="WE" FontSize="18" />
+
+                    </Border>
+                </Grid>
+            </Border>
+            <!--#endregion-->
+
+    </Grid>
+
+
+</Window>

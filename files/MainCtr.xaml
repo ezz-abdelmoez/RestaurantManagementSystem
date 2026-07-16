@@ -1,0 +1,284 @@
+﻿<UserControl x:Class="SalesManagement.files.MainCtr"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+             lex:LocalizeDictionary.DesignCulture="en-US"
+             lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+             lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+             MinHeight="600" 
+             MinWidth="1200" 
+             mc:Ignorable="d" >
+     <Grid Name="gridTab">
+                    <Grid x:Name="main_window_grid">
+
+
+                        <ProgressBar x:Name="demobar" Orientation="Horizontal" 
+                                 Maximum="500"
+                                 Minimum="0"
+                             HorizontalAlignment="Right"
+                         Height="35" Margin="0,60,40,0" VerticalAlignment="Top" Width="200"/>
+
+                        <Label x:Name="shiftno_tb" Height="63" HorizontalAlignment="Left" Margin="60,82,0,0" VerticalAlignment="Top"
+                   FontSize="60" Visibility="Visible"/>
+
+                        <!--#region Main Grid-->
+                        <Grid x:Name="mainGrid" Margin="0 40 0 0">
+                        </Grid>
+                        <!--#endregion-->
+
+                        <!--#region Top Component-->
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                            <Border>
+                                <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Width="660"
+                            Orientation="Horizontal" >
+                                    <Button Name="mainWindow_btn"
+                                    Content="{lex:Loc Key=main}"
+                                    Click="mainWindow_btn_Click"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                 />
+
+                                    <Button x:Name="sales_menu_btn"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                   
+                                MouseEnter="menu_btn_MouseEnter"
+                                MouseLeave="menu_btn_MouseLeave"
+                                Content="{lex:Loc Key=sales}" />
+
+                                    <Button x:Name="purchase_menu_btn"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                MouseEnter="menu_btn_MouseEnter"
+                                MouseLeave="menu_btn_MouseLeave"
+                            Content="{lex:Loc Key=purchases}"/>
+
+                                    <Button x:Name="items_menu_btn"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                MouseEnter="menu_btn_MouseEnter"
+                                MouseLeave="menu_btn_MouseLeave"
+                        Content="{lex:Loc Key=items}" />
+
+                                    <Button x:Name="accounts_menu_btn"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                MouseEnter="menu_btn_MouseEnter"
+                                MouseLeave="menu_btn_MouseLeave"
+                        Content="{lex:Loc Key=accounts}" />
+
+                                    <Button x:Name="settings_menu_btn"
+                                    Width="100"
+                                    Height="35"
+                                    Style="{DynamicResource dangerBtn}"
+                                MouseEnter="menu_btn_MouseEnter"
+                                MouseLeave="menu_btn_MouseLeave"
+                        Content="{lex:Loc Key=settings}" />
+
+
+
+                                </StackPanel>
+                            </Border>
+
+
+                            <Border  x:Name="menusBorder_br"  Width="670" Margin="0 -10 0 0"
+                             Background="Transparent">
+                                <StackPanel Orientation="Horizontal">
+                                    <ListBox Width="100" Visibility="Hidden">
+
+                                    </ListBox>
+                                    <ListBox x:Name="salesLB" MinWidth="100" 
+                                         Background="Transparent"
+                                     MouseEnter="ListBox_menus_MouseEnter"
+                                     MouseLeave="ListBox_menus_MouseLeave"
+                                     SelectionChanged="salesLB_SelectionChanged"
+                                     >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Vertical" 
+                                                                IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ListBoxItem  Height="30"  Content="{lex:Loc Key=sales_page}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=orders}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=delv_orders}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=sales}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=clients}"/>
+                                    </ListBox>
+                                    <ListBox x:Name="purchLB" MinWidth="100" 
+                                     Background="Transparent"
+                                     SelectionChanged="purchLB_SelectionChanged"
+                                     MouseEnter="ListBox_menus_MouseEnter"
+                                     MouseLeave="ListBox_menus_MouseLeave"
+                                     >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Vertical" 
+                                                                IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=purchases}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=sups}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=store}"/>
+                                    </ListBox>
+                                    <ListBox x:Name="itemsLB" MinWidth="100" Background="Transparent"
+                                     MouseEnter="ListBox_menus_MouseEnter"
+                                     MouseLeave="ListBox_menus_MouseLeave"
+                                     SelectionChanged="itemsLB_SelectionChanged"
+                                     >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Vertical" 
+                                                                IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=items}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=prep}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=cate}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=offers}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=kitchen}"/>
+                                    </ListBox>
+                                    <ListBox x:Name="accountsLB" MinWidth="100" Background="Transparent"
+                                     MouseEnter="ListBox_menus_MouseEnter"
+                                     MouseLeave="ListBox_menus_MouseLeave"
+                                     SelectionChanged="accountsLB_SelectionChanged"
+                                     >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Vertical" 
+                                                                IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=safe}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=cashier}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=cashier_accounts}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=expenses}"/>
+                                    </ListBox>
+                                    <ListBox x:Name="settingsLB" MinWidth="100"
+                                     
+                                     Background="Transparent"
+                                     MouseEnter="ListBox_menus_MouseEnter"
+                                     MouseLeave="ListBox_menus_MouseLeave"
+                                     SelectionChanged="settingsLB_SelectionChanged"
+                                     >
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <VirtualizingStackPanel Orientation="Vertical"
+                                                                IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=settings}"/>
+                                        <ListBoxItem   Height="30"  Content="{lex:Loc Key=emp}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=delv_man}"/>
+                                        <ListBoxItem   Height="30" Content="{lex:Loc Key=parcode}"/>
+                                    </ListBox>
+
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                   
+                        <!--#endregion-->
+
+
+
+                        <!-- ~1~#region Bottom conponent@1@ -->
+                        <!-- ~1~bottom left@1@ -->
+                        <!-- <Border  -->
+                        <!-- Background="{DynamicResource orangeLightLinear}" -->
+                        <!-- CornerRadius="20, 20, 0, 0" -->
+                        <!-- VerticalAlignment="Bottom" -->
+                        <!-- HorizontalAlignment="Left"> -->
+                        <!-- -->
+                        <!-- -->
+                        <!--     <StackPanel Orientation="Horizontal"> -->
+                        <!--         <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5" Width="130" -->
+                        <!--             BorderThickness="1 0 0 2" BorderBrush="White"> -->
+                        <!-- -->
+                        <!--             <Label Content="Satureday" Name="day_of_week_lb" FontSize="20"/> -->
+                        <!--         </Border> -->
+                        <!--         <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5" Width="130"  -->
+                        <!--             BorderThickness="1 0 0 2" BorderBrush="White"> -->
+                        <!-- -->
+                        <!--             <Label Content="Satureday" Name="time_lb" FontSize="20"/> -->
+                        <!--         </Border> -->
+                        <!--         <Border CornerRadius="20, 0, 20, 0" Height="35" Margin="5"  -->
+                        <!--             BorderThickness="1 0 0 2" BorderBrush="White"> -->
+                        <!-- -->
+                        <!--             <Label Content="12:15:00 PM" Name="date_lb" FontSize="20"/> -->
+                        <!--         </Border> -->
+                        <!--         <Border CornerRadius="20, 20, 20, 0" Height="35" Margin="5" Padding="10 0" -->
+                        <!--             Background="{StaticResource blueDarkRadial}"> -->
+                        <!--             <Label Content="{lex:Loc Key=created_by}" Width="auto" Foreground="White"  -->
+                        <!--            /> -->
+                        <!--         </Border> -->
+                        <!--     </StackPanel> -->
+                        <!-- </Border> -->
+                        <!-- -->
+                        <!-- ~1~bottom right@1@ -->
+                        <!-- <Border Height="50" Width="400" VerticalAlignment="Bottom" -->
+                        <!--     MouseDown="showShortsWin_md" Cursor="Hand" -->
+                        <!--     Background="{DynamicResource pageBackground}" -->
+                        <!--     CornerRadius="20" -->
+                        <!-- HorizontalAlignment="Right"> -->
+                        <!--     <Grid> -->
+                        <!--         <Border Height="40"  Width="120" -->
+                        <!--         CornerRadius="20, 0, 20, 0" -->
+                        <!--         HorizontalAlignment="Right" -->
+                        <!--         Background="{DynamicResource orangeLightLinear}"> -->
+                        <!-- -->
+                        <!--             <Label Content="{lex:Loc Key=shorts}"/> -->
+                        <!--         </Border> -->
+                        <!-- -->
+                        <!--         <Canvas SizeChanged="canMain_SizeChanged"  -->
+                        <!--             x:Name="canMain" ClipToBounds="true" Height="30" -->
+                        <!--              -->
+                        <!--         VerticalAlignment="Center" Margin="0,0,70,0"> -->
+                        <!--             <TextBlock x:Name="tbmarquee" FlowDirection="RightToLeft" Margin="0" FontSize="20"  -->
+                        <!--                    Foreground="{DynamicResource textColor}" -->
+                        <!--                    FontFamily="{DynamicResource raleway_bold_italic}" -->
+                        <!--                    Text="{lex:Loc Key=created_by}" -->
+                        <!--             VerticalAlignment="Bottom" FontWeight="Bold"/> -->
+                        <!--         </Canvas> -->
+                        <!-- -->
+                        <!--         <Border HorizontalAlignment="Left" -->
+                        <!--         CornerRadius="20 0 20 0" -->
+                        <!--         Width="50" -->
+                        <!--         Height="30" RenderTransformOrigin="0.5,0.5" -->
+                        <!--             Background="{DynamicResource orangeLightLinear}" -->
+                        <!--         > -->
+                        <!--             <Border.RenderTransform> -->
+                        <!--                 <TransformGroup> -->
+                        <!--                     <ScaleTransform/> -->
+                        <!--                     <SkewTransform/> -->
+                        <!--                     <RotateTransform Angle="-45"/> -->
+                        <!--                     <TranslateTransform/> -->
+                        <!--                 </TransformGroup> -->
+                        <!--             </Border.RenderTransform> -->
+                        <!-- -->
+                        <!--             <Label Content="WE" FontSize="18" /> -->
+                        <!-- -->
+                        <!--         </Border> -->
+                        <!--     </Grid> -->
+                        <!-- </Border> -->
+                        <!-- ~1~#endregion@1@ -->
+
+
+
+                    </Grid>
+
+                 
+                </Grid>
+</UserControl>

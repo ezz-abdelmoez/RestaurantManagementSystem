@@ -1,0 +1,21 @@
+﻿<Window x:Class="SalesManagement.files.test.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesManagement.files.test"
+        mc:Ignorable="d"
+        Title="TestWindow" Height="450" Width="800" Background="Gray">
+
+    <Window.Resources>
+
+
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBox Name="tbox" Height="50"></TextBox>
+        <Button Width="100" Height="50" Content="send" Click="send_message"></Button>
+        <WebBrowser Name="WebBrowser1"></WebBrowser>
+    </StackPanel>
+
+</Window>

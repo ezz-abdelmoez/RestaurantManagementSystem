@@ -1,0 +1,83 @@
+﻿<Window x:Class="SalesManagement.files.windows.PopupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesManagement.files.windows"
+        mc:Ignorable="d"
+        MouseDown="drag_window_md"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing"
+        WindowStyle="None"
+        ResizeMode="CanResize"
+        AllowsTransparency="True"
+        Background="Transparent" Width="900" Height="700">
+    <Border CornerRadius="20"
+            Margin="20"
+            Background="{StaticResource pageBackground}"
+            >
+      
+        <Border.Effect>
+            <DropShadowEffect Color="Black" ShadowDepth="20" BlurRadius="10"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="{StaticResource greenDarkLinear}" 
+                    MouseDown="drag_window_md"
+                    CornerRadius="20 20 0 0">
+                <Grid>
+                    <Label x:Name="Title1" HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" Content="Orders Page" 
+                           Style="{StaticResource pageTitle}"/>
+
+
+                    <Grid HorizontalAlignment="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource imag_border}" Grid.Column="0"
+                                BorderThickness="2"
+                            Height="40" Width="40" Margin="5,0,0,0">
+                            <Image MouseDown="hide_window_img"  
+                                   Source="hide.png" Stretch="Fill"/>
+                        </Border>
+
+                        <Border Style="{StaticResource imag_border}" Grid.Column="1"
+                                BorderThickness="2" 
+                            Height="40" Width="40" Margin="5,0,5,0">
+                            <Image MouseDown="Min_Max_Window_img" Source="max_min.png" Stretch="Fill"/>
+                        </Border>
+
+
+                        <Border Style="{StaticResource imag_border}" Grid.Column="2"
+                                BorderThickness="2" 
+                            Height="40" Width="40" Margin="5,0,0,0">
+                            <Image  
+                                MouseDown="Exit_img"
+                                    Cursor="Hand" Source="delete.png" Stretch="Fill"
+                                ToolTip="Exit"/>
+                        </Border>
+                    </Grid>
+
+
+
+
+                </Grid>
+            </Border>
+
+            <Grid x:Name="popupMainGrid" Grid.Row="1" >
+                
+            </Grid>
+
+            
+        </Grid>
+
+    </Border>
+</Window>

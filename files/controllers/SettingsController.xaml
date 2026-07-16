@@ -1,0 +1,528 @@
+﻿<UserControl x:Class="SalesManagement.files.controllers.SettingsController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files.controllers"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+             mc:Ignorable="d" >
+
+    <Border CornerRadius="20" Padding="5">
+
+        <Border>
+            <TabControl Background="Transparent">
+                <TabItem>
+                    <TabItem.Header>
+                        <Border Width="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=users}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+
+                    <Border CornerRadius="20 0 20 0" HorizontalAlignment="Center"
+                            Background="{DynamicResource orangeLightLinear}"
+                            MinWidth="600"
+                            Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border CornerRadius="20 0 20 0" 
+                                    HorizontalAlignment="Left"
+                                >
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="0"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Padding="5" 
+                                            
+                                            CornerRadius="0 20 0 20">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Content="{lex:Loc Key=user}" FontSize="20"/>
+
+                                            <ComboBox Name="users_combo" Grid.Column="1"
+                                                      Width="300"
+                                                      ItemsSource="{Binding}"
+                                              IsEditable="True"
+                                              SelectionChanged="users_combo_SelectionChanged">
+                                            </ComboBox>
+                                        </Grid>
+                                        
+                                    </Border>
+                                    
+
+                                    <Button Style="{StaticResource dangerBtn1}"
+                                            Click="delete_user_click"
+                                        Grid.Column="2"
+                                        Content="{lex:Loc Key=delete}"
+                                        MinHeight="50"
+                                        MinWidth="100"/>
+                                </Grid>
+                            </Border>
+
+
+                            <Border 
+                                    Margin="0 5 0 0" HorizontalAlignment="Left"
+                                            CornerRadius="0 20 0 20"
+                                    Grid.Row="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=password}" FontSize="20"
+                                           Margin="0 0 20 0"/>
+
+
+
+                                    <PasswordBox x:Name="password_user" Grid.Column="1" Margin="5"
+                                                 Width="300"
+                                                 Height="40"
+                                                 MinWidth="200">
+                                    </PasswordBox>
+                                </Grid>
+                            </Border>
+
+
+                            <Border 
+                                    Margin="0 5 0 0" HorizontalAlignment="Left" Width="430"
+                                    Padding="5" 
+                                            CornerRadius="0 20 0 20"
+                                    Grid.Row="2">
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=admin}" FontSize="20"
+                                       Margin="0 0 50 0"/>
+
+                                    <CheckBox x:Name="is_admin_check" Grid.Column="1"
+                                          VerticalContentAlignment="Center"
+                                          MinHeight="50" RenderTransformOrigin="0.5,0.5">
+                                        <CheckBox.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleX="3" ScaleY="3"/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </CheckBox.RenderTransform>
+
+                                    </CheckBox>
+                                </Grid>
+                            </Border>
+
+
+
+                            <Button Style="{StaticResource dangerBtn}"
+                                    Margin="0 10 0 10"
+                                    Grid.Row="3"
+                                    Content="{lex:Loc Key=update}"
+                                    Width="100"
+                                    Height="50"
+                                    Click="update_user_password_isadmin_click"/>
+
+
+                        </Grid>
+                    </Border>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100"
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=add_new_user}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Border CornerRadius="20 0 20 0"
+                            HorizontalAlignment="Center"
+                            Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=user_name}" FontSize="20"/>
+
+                                    <TextBox x:Name="new_user_name_tb" Grid.Column="2" FontSize="18"
+                                             MinWidth="200"
+                                          >
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                    Grid.Row="1"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=password}" FontSize="20"/>
+
+                                    <PasswordBox x:Name="new_pass_pb" Grid.Column="2" FontSize="18"
+                                             MinWidth="200"
+                                          >
+                                    </PasswordBox>
+                                </Grid>
+                            </Border>
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                    Grid.Row="2"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=reenter_password}" FontSize="20"/>
+
+                                    <PasswordBox x:Name="new_re_pass_pb" Grid.Column="1" FontSize="18"
+                                             MinWidth="200"
+                                          >
+                                    </PasswordBox>
+                                </Grid>
+                            </Border>
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                    Grid.Row="3"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=account_type}" FontSize="20"/>
+
+                                    <ComboBox Name="new_acc_type" Grid.Column="2" FontSize="18"
+                                             MinWidth="200"
+                                          MinHeight="40">
+                                        <ComboBoxItem Content="Admin"/>
+                                        <ComboBoxItem Content="cashier"/>
+                                    </ComboBox>
+                                </Grid>
+                            </Border>
+
+                            <Button Style="{StaticResource dangerBtn}"
+                                    Click="create_new_emp_click"
+                                    Margin="0 10 0 10"
+                                    Grid.Row="4"
+                                    Content="{lex:Loc Key=register}"
+                                    MinWidth="100"
+                                    MaxWidth="300"
+                                    MinHeight="50"/>
+
+
+                        </Grid>
+                    </Border>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=database}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Border CornerRadius="20 0 20 0"
+                            HorizontalAlignment="Center"
+                            Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <Border CornerRadius="20 0 20 0"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=enter_your_password}" FontSize="20"/>
+
+                                    <PasswordBox x:Name="current_user_pass" Grid.Column="2" FontSize="18"
+                                             Width="300" MinHeight="50">
+                                    </PasswordBox>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="2" HorizontalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{StaticResource dangerBtn}"
+                                            Click="reorder_tables_click"
+                                            Content="{lex:Loc Key=reorder_tables}"
+                                            MinWidth="200"
+                                            MinHeight="50"/>
+
+                                    <Button Style="{StaticResource dangerBtn1}"
+                                            Click="delete_clients_click"
+                                            Content="{lex:Loc Key=delete_clients}"
+                                            Grid.Column="2"
+                                            MinWidth="200"
+                                            MinHeight="50"/>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="4" HorizontalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{StaticResource dangerBtn1}"
+                                            Click="delete_all_sales_click"
+                                            Content="{lex:Loc Key=delete_all_Sales}"
+                                            MinWidth="200"
+                                            MinHeight="50"/>
+
+                                    <Button Style="{StaticResource dangerBtn1}"
+                                            Click="delete_cates_items_click"
+                                            Content="{lex:Loc Key=delete_cates_and_items}"
+                                            Grid.Column="2"
+                                            Width="300"
+                                            MinHeight="50"/>
+                                </Grid>
+                            </Border>
+
+                            <Border Grid.Row="6"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    
+                                    >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Padding="5"
+                                            CornerRadius="20 0 20 0"
+                                            Style="{StaticResource blueLightRadialBorder}">
+                                        <StackPanel>
+                                            <Image MouseDown="create_backup_img_md" Cursor="Hand" 
+                                                   Width="100" Height="100" Source="backup.png"/>
+                                            <Label Content="{lex:Loc Key=create}"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                    <Border Padding="5"
+                                        CornerRadius="20 0 20 0"
+                                            Style="{StaticResource blueLightRadialBorder}"
+                                            Grid.Column="2">
+                                        <StackPanel>
+                                            <Image MouseDown="restor_backup_img_md" Width="100" Height="100" Source="restor.png"/>
+                                            <Label Content="{lex:Loc Key=restor}"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+                    </Border>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=order}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Border CornerRadius="20 0 20 0"
+                            HorizontalAlignment="Center"
+                            Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=delivery}" FontSize="20"
+                                           FontWeight="Bold"/>
+
+                                    <TextBox x:Name="delev_name_tb" Grid.Column="1" FontSize="18"
+                                             MinWidth="300">
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+
+                            <Border CornerRadius="20 0 20 0"
+                                    Margin="0 5 0 0"
+                                    Padding="10"
+                                    Grid.Row="1"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=con_of_order}" FontSize="20"
+                                           FontWeight="Bold"/>
+
+                                    <TextBox x:Name="con_order_tb" Grid.Column="1" FontSize="18"
+                                             Text="We are Distinguished Because We Specialize"
+                                             MinWidth="400"
+                                             MaxWidth="500">
+                                    </TextBox>
+                                </Grid>
+                            </Border>
+
+                            <Button Style="{StaticResource dangerBtn}"
+                                    Click="change_order_details_click"
+                                    Margin="0 10 0 10"
+                                    Grid.Row="2"
+                                    Content="{lex:Loc Key=change}"
+                                    MinWidth="100"
+                                    MaxWidth="300"
+                                    MinHeight="50"/>
+
+
+                        </Grid>
+                    </Border>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <Border MinWidth="100" 
+                                CornerRadius="20"
+                                 Style="{StaticResource blueLightRadialBorder}">
+                            <Label Content="{lex:Loc Key=printer}" FontSize="20"/>
+                        </Border>
+                    </TabItem.Header>
+                    <Border CornerRadius="20 0 20 0"
+                            Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border CornerRadius="20 0 20 0"
+                                Padding="10"
+                                Background="{StaticResource orangeLightLinear}">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Content="{lex:Loc Key=printer}" FontSize="20"
+                                           FontWeight="Bold"/>
+
+                                    <ComboBox Name="printers_combo" Grid.Column="1" FontSize="18"
+                                              MinWidth="250"
+                                          Height="40">
+                                    </ComboBox>
+
+
+                                </Grid>
+                            </Border>
+
+
+
+
+
+
+                            <Button Style="{StaticResource dangerBtn}"
+                                    Click="save_printer_click"
+                                    Margin="0 10 0 10"
+                                    Grid.Row="3"
+                                    Content="{lex:Loc Key=save}"
+                                    MinWidth="100"
+                                    MaxWidth="300"
+                                    MinHeight="50"/>
+
+
+                        </Grid>
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </Border>
+
+    </Border>
+</UserControl>

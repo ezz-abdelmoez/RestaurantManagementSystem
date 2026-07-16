@@ -1,0 +1,820 @@
+﻿<UserControl x:Class="SalesManagement.files.controllers.CategoryController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SalesManagement.files.controllers"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en-US"
+        lex:ResxLocalizationProvider.DefaultAssembly="SalesManagement"
+        lex:ResxLocalizationProvider.DefaultDictionary="Langs"
+             mc:Ignorable="d" >
+    <Border CornerRadius="20" Background="{DynamicResource pageBackground}"
+            >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Background="{StaticResource greenDarkLinear}"
+                    CornerRadius="20"
+                    >
+                <Grid>
+                    <Label HorizontalAlignment="Center"
+                           Content="{lex:Loc Key=item}"
+                           Style="{StaticResource pageTitle}"/>
+
+                    <Border Style="{StaticResource imag_border}"
+                             HorizontalAlignment="Left"
+                            Margin="20 0 0 0">
+                        <Image MouseDown="new_item_mouse_down" 
+                               ToolTip="{lex:Loc Key=new}"
+                               Width="50" Height="50" Source="new.png"/>
+                    </Border>
+
+                    <Border Style="{StaticResource imag_border}"
+                            HorizontalAlignment="Right"
+                            Margin="5"
+                            Height="50">
+                        <Image Source="/assets/img/refresh-button.png"
+                               MouseDown="refresh_page_md"></Image>
+                    </Border>
+
+                </Grid>
+            </Border>
+
+
+            <Border HorizontalAlignment="Center" Grid.Row="1"
+                         CornerRadius="20"
+                        VerticalAlignment="Center">
+               
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Border CornerRadius="20 20 0 0" Grid.Column="0"
+                                Visibility="Collapsed"
+                                    Padding="10" Height="60"
+                                Background="{DynamicResource blueDarkRadial}">
+                            <Label Content="{lex:Loc Key=add_new_item}" Style="{StaticResource pageTitle}"/>
+                        </Border>
+
+
+                    <Border Grid.Row="1" CornerRadius="20" BorderBrush="White" 
+                            Name="add_new_item_border"
+                            Margin="5" BorderThickness="2">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <StackPanel>
+                                <Image Height="100" Source="icon.png" Margin="10"
+                                       Name="categ_img"></Image>
+                                <Button Name="pickImage" Click="PickImage_OnClick"
+                                        Content="Choose Image" Height="40" Style="{DynamicResource dangerBtn}"/>
+                            </StackPanel>
+
+                            <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+
+
+
+                                <Border CornerRadius="20 0 20 0" 
+                                            VerticalAlignment="Center"
+                                            Grid.Column="0"
+                                    Margin="0 5 0 0"
+                                Background="{DynamicResource orangeLightLinear}">
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Content="{lex:Loc Key=cate1}" 
+                                            />
+
+                                        <ComboBox Name="new_cate_combo"
+                                          IsEditable="True" MaxWidth="300" Grid.Row="1" />
+                                    </Grid>
+                                </Border>
+
+                                <Border CornerRadius="20 0 20 0" 
+                                            VerticalAlignment="Center"
+                                            Grid.Column="1" 
+                                    Margin="0 5 0 0"
+                                Background="{DynamicResource orangeLightLinear}">
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Content="{lex:Loc Key=parcode}"
+                                            
+                                       />
+                                        <TextBox x:Name="new_parcode_tb" 
+                                                     MinWidth="200" Height="50" 
+                                                     Width="200" Grid.Row="1"/>
+                                    </Grid>
+                                </Border>
+
+                                <Border Margin="5 5 5 10"  
+                                        VerticalAlignment="Center"
+                                        CornerRadius="20 20 20 0"
+                                        Background="{DynamicResource orangeLightLinear}">
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="{lex:Loc Key=item_name}"/>
+
+                                        <TextBox x:Name="new_item_name_tb" MaxWidth="600"
+                                                 Width="200" Grid.Row="1" MaxLines="3"
+                                                 AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 VerticalScrollBarVisibility="Auto"
+                                        />
+
+                                    </Grid>
+
+                                </Border>
+
+                                <Border Margin="5 5 5 10" Grid.Row="2"
+                    MinHeight="60"
+                            HorizontalAlignment="Center"
+                            CornerRadius="20 20 20 0">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Margin="5 5 5 10"   
+                                    HorizontalAlignment="Center"
+                                    CornerRadius="20 20 20 0"
+                                    Background="{DynamicResource orangeLightLinear}">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="{lex:Loc Key=price}"/>
+
+                                                <TextBox x:Name="new_price_tb"
+                                                 PreviewTextInput="new_price_tb_PreviewTextInput"
+                                                 Width="150" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+                                        <Border Margin="5 5 5 10"   
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    CornerRadius="20 20 20 0"
+                                    Background="{DynamicResource orangeLightLinear}">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="{lex:Loc Key=letter_abbreviation}"/>
+
+                                                <TextBox x:Name="new_letter_tb" Width="150" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+                                        <Border Margin="5 5 5 10"   
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    CornerRadius="20 20 20 0"
+                                    Background="{DynamicResource orangeLightLinear}">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="{lex:Loc Key=minimum}"/>
+
+                                                <TextBox x:Name="new_min_tb"
+                                                 PreviewTextInput="new_min_tb_PreviewTextInput"
+                                                 Width="150" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+                                    </Grid>
+                                </Border>
+
+
+                                <Button x:Name="save_new_item_btn" 
+                                        Click="save_new_item_btn_Click"
+                                        Style="{DynamicResource dangerBtn}" 
+                                        Width="200" Height="60" Content="{lex:Loc Key=save}"/>
+
+                                <Button   Visibility="Collapsed" Name="update_item_btn"
+                                    Click="update_btn_click"
+                                    Style="{DynamicResource dangerBtn1}" 
+                                    Width="100" Height="60" Content="{lex:Loc Key=update}"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+
+
+                </Grid>
+                </Border>
+            
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border CornerRadius="20 20 0 0" 
+                        BorderBrush="White" BorderThickness="2"
+                        Padding="5" Margin="5 10 5 0">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" >
+                            <Button Content="Select"  Width="100" Height="40"
+                            Grid.Column="4" Click="ButtonBase_OnClick"/>
+
+                            <StackPanel Orientation="Horizontal" Name="multiEdit_stackpanel" Visibility="Collapsed">
+                                <Viewbox>
+                                    <CheckBox Content="Select All" Unchecked="ToggleButton_OnUnchecked" Checked="ToggleButton_OnChecked"></CheckBox>
+                                </Viewbox>
+
+                                <Border Style="{StaticResource imag_border}"
+                                Margin="10 0"
+                                Width="40" Height="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Grid.Column="8">
+                                    <Image Source="/assets/img/remove.png" ToolTip="Delete"
+                                   MouseDown="delete_selected_items_img"/>
+                                </Border>
+
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Grid HorizontalAlignment="Right">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{lex:Loc Key=search}" FontSize="20" 
+                                       FontFamily="{StaticResource raleway_bold_italic}"
+                                       Foreground="{DynamicResource textColor}"/>
+
+                            <TextBox Grid.Column="1" x:Name="search_item_tb"
+                                         TextChanged="search_item_tb_TextChanged"
+                                         Height="40"
+                                         Width="200"
+                                         
+                                             VerticalContentAlignment="Center"
+                                            Margin="0 0 10 0"
+                                             />
+
+                            <Border  
+                                        Grid.Column="2"
+                                        HorizontalAlignment="Center"
+                                        CornerRadius="20 20 20 0"
+                                        Background="{DynamicResource orangeLightLinear}">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{lex:Loc Key=type}"/>
+
+                                    <ComboBox Grid.Row="1"
+                                                  SelectionChanged="cate_combo_SelectionChanged"
+                                                  x:Name="cate_combo"
+                                                  IsEditable="True"
+                                                  Cursor="Hand"/>
+
+                                </StackPanel>
+                            </Border>
+
+                            
+
+
+
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <ListView x:Name="itemsListview" 
+                          Grid.Row="1"
+                          ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.IsDeferredScrollingEnabled="False"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          HorizontalContentAlignment="Stretch"
+                          ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="60" Header="{lex:Loc Key=number}"
+                                            DisplayMemberBinding="{Binding RelativeSource=
+                                 {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
+                                  Converter={StaticResource IndexConverter}}" />
+
+                            <GridViewColumn Header="{lex:Loc Key=cate1}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label 
+                                               Width="200" 
+                                               Foreground="{StaticResource textColor}">
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding Path=cate}"/>
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=item}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label  Grid.Column="2" Width="200"
+                                              KeyDown="item_key_down" Foreground="{StaticResource textColor}"
+                                             >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" Text="{Binding Path=food}"/>
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=price}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- <TextBox  Grid.Column="3" MinWidth="100" -->
+                                        <!--       KeyDown="price_key_down" -->
+                                        <!--       Text="{Binding price}"   -->
+                                        <!--       /> -->
+                                        <Label  Grid.Column="2" Width="100"
+                                                Foreground="{StaticResource textColor}"
+                                                KeyDown="item_key_down"
+                                        >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" 
+                                                            Text="{Binding price}"  />
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=letter}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- <TextBox  Grid.Column="4" MinWidth="100" -->
+                                        <!--       KeyDown="letter_key_down" -->
+                                        <!--       Text="{Binding letter}"   -->
+                                        <!--      /> -->
+                                        <Label  Grid.Column="2" Width="100"
+                                                Foreground="{StaticResource textColor}"
+                                                KeyDown="item_key_down"
+                                        >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" 
+                                                            Text="{Binding letter}"  />
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=minimum}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- <TextBox  Grid.Column="5" MinWidth="100" -->
+                                        <!--       KeyDown="min_key_down" -->
+                                        <!--       Text="{Binding min_level}"  FontSize="20"/> -->
+
+                                        <Label  Grid.Column="2" Width="100"
+                                                Foreground="{StaticResource textColor}"
+                                                KeyDown="item_key_down"
+                                        >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" 
+                                                            Text="{Binding min_level}"  />
+                                            </Label.Content>
+                                        </Label>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=parcode}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!-- <TextBox  Grid.Column="6" MinWidth="100"  -->
+                                        <!--       KeyDown="parcode_key_down" -->
+                                        <!--       Text="{Binding parcode}"  FontSize="20"/> -->
+                                        <Label  Grid.Column="2" Width="200"
+                                                Foreground="{StaticResource textColor}"
+                                                KeyDown="item_key_down"
+                                        >
+                                            <Label.Content>
+                                                <AccessText TextWrapping="Wrap" 
+                                                            Text="{Binding parcode}"  />
+                                            </Label.Content>
+                                        </Label>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=edit}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{lex:Loc Key=edit}"  Grid.Column="7"
+                                                Click="edit_item_btn_ls"
+                                                MinWidth="100" Height="40" Style="{DynamicResource dangerBtn}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=view}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{lex:Loc Key=view}"  Grid.Column="7"
+                                            Click="view_item_btn_ls"
+                                            Width="60" MinHeight="40" Style="{DynamicResource dangerBtn}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="{lex:Loc Key=delete}">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource imag_border}"
+                                            Width="40" Height="40"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Grid.Column="8">
+                                            <Image Source="delete.png" ToolTip="Delete"
+                                               MouseDown="delete_item_img"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+
+
+                </ListView>
+            </Grid>
+
+            <Border Grid.Row="3"
+                    CornerRadius="20"
+                    Margin="5">
+                <Border Grid.Row="1" HorizontalAlignment="Left"
+                        Margin="5 0 0 0">
+                    <Border  Margin="5 5 5 10"  Grid.Row="1" 
+                        HorizontalAlignment="Center"
+                        
+                        CornerRadius="20 0 20 0"
+                        Background="{DynamicResource orangeLightLinear}">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{lex:Loc Key=number}" FontSize="20"/>
+
+                            <TextBox x:Name="total_items_tb" Grid.Column="1"
+                                     VerticalContentAlignment="Center"
+                             Margin="0 0 10 0"
+                                     />
+
+                        </Grid>
+
+                    </Border>
+                </Border>
+            </Border>
+
+
+            <Border x:Name="border_view_item"  Visibility="Collapsed" Background="#B3D9D9D9"
+                    
+                      CornerRadius="20"
+                    MinHeight="500"
+                    MaxHeight="1000"
+                    Grid.RowSpan="4">
+                <Border Background="{StaticResource pageBackground}" CornerRadius="20"
+                        
+                        HorizontalAlignment="Center">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="10" BlurRadius="20" Color="{DynamicResource shadow1}"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border CornerRadius="20 20 0 0" Grid.ColumnSpan="2"
+                                     Height="50"
+                                Background="{DynamicResource blueDarkRadial}">
+                            <Grid>
+
+                                <Label x:Name="dt_item_name_lb" Content="{lex:Loc Key=item}" 
+                                    Style="{StaticResource pageTitle}"/>
+
+                                <Border  Style="{StaticResource imag_border}" Grid.Row="1"
+                                     Margin="5"
+                                     HorizontalAlignment="Left"
+                                    Height="40" Width="40">
+                                    <Image MouseDown="hide_border_view_img" Source="delete.png" ToolTip="Save"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="2" Padding="5" CornerRadius="20" 
+                                Margin="5"
+                            Background="{DynamicResource pageBackground}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="10" BlurRadius="20" Color="{DynamicResource shadow1}"/>
+                            </Border.Effect>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                                <Border CornerRadius="20 0 20 0" Grid.Row="1"
+                                        VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                        Margin="0 5 0 0"
+                                    Background="{StaticResource orangeLightLinear}">
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Content="{lex:Loc Key=cate1}" FontSize="20"
+                                           />
+
+                                        <ComboBox  x:Name="vw_cate_combo"
+                                              IsEditable="True" Width="200" Grid.Row="1" />
+                                    </Grid>
+                                </Border>
+
+                                <Border Margin="5 5 5 10" Grid.Row="2"
+                                        VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="{lex:Loc Key=item}"/>
+
+                                        <TextBox x:Name="vw_item_tb"  MaxWidth="150" MinWidth="200" Grid.Row="1"/>
+
+                                    </Grid>
+                                </Border>
+
+                                <Border Grid.Row="3"
+                                        VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{DynamicResource orangeLightLinear}">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Margin="5 5 5 10"   
+                                            HorizontalAlignment="Center"
+                                            CornerRadius="20 20 20 0">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Content="{lex:Loc Key=price}"/>
+
+                                                <TextBox x:Name="vw_price_tb" MaxWidth="100" MinWidth="100" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+                                        <Border Margin="5 5 5 10"   
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="{lex:Loc Key=letter}"/>
+
+                                                <TextBox x:Name="vw_letter_tb" MaxWidth="60" MinWidth="60" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+                                        <Border Margin="5 5 5 10"   
+                                Grid.Column="2"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="{lex:Loc Key=order_num}"/>
+
+                                                <TextBox x:Name="vw_order_no_tb" MaxWidth="100" MinWidth="100" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+
+                                        <Border Margin="5 5 5 10"   Visibility="Collapsed"
+                                Grid.Column="3"
+                                HorizontalAlignment="Center"
+                                CornerRadius="20 20 20 0"
+                                Background="{StaticResource orangeDeepRadial}">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="Duration"/>
+
+                                                <TextBox x:Name="vw_preb_tim_tb" MinWidth="100" MaxWidth="100" Grid.Row="1"/>
+
+                                            </Grid>
+
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+
+                                <Border Grid.Column="1" Style="{StaticResource imag_border}"
+                                Grid.RowSpan="4"
+                                Height="80" Width="80"
+                                Margin="20 0"
+                                >
+                                    <Image MouseDown="view_save_edit_imag_md" Source="save.png" ToolTip="Save"/>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="0 20 0 0">
+                            <Border CornerRadius="20 0 20 0" Grid.Row="1"
+                            HorizontalAlignment="Center"
+                                    Padding="10"
+                                Background="{StaticResource orangeLightLinear}">
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Content="{lex:Loc Key=cate1}" FontSize="20"
+                                       />
+
+                                        <ComboBox x:Name="reg_store_item_combo"
+                                              ItemsSource="{Binding}"
+                                          IsEditable="True" Width="200" Grid.Column="1" />
+                                    </Grid>
+                                    <Grid Grid.Column="1" Margin="10 0 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Content="{lex:Loc Key=qty}" FontSize="20"
+                                       />
+
+                                        <TextBox x:Name="reg_qty_tb" Height="50" MinWidth="80" MaxWidth="80" Grid.Column="1" />
+                                    </Grid>
+                                    <Button Style="{StaticResource calcBtn}" 
+                                        Click="register_item_store_btn"
+                                        Margin="20 5 5 5"
+                                        Content="{lex:Loc Key=register}"
+                                        Grid.Column="2"
+                                        Width="100" Height="50"/>
+                                </Grid>
+                            </Border>
+                            <ListView x:Name="reg_list_view"
+                                  ItemsSource="{Binding}"
+                                    Background="Transparent"
+                                  HorizontalContentAlignment="Stretch"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn>
+                                            <GridViewColumn.Header>
+                                                <Button Content="{lex:Loc Key=item}" 
+                                            MinWidth="200" 
+                                            Style="{DynamicResource calcBtn1}"/>
+                                            </GridViewColumn.Header>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding Path=item_name}" 
+                                               Foreground="{DynamicResource textColor}"
+                                               MinWidth="100"  FontSize="20"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn>
+                                            <GridViewColumn.Header>
+                                                <Button Content="{lex:Loc Key=qty}" 
+                                            MinWidth="100" 
+                                            Style="{DynamicResource calcBtn1}"/>
+                                            </GridViewColumn.Header>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding Path=qty}" 
+                                               Foreground="{DynamicResource textColor}"
+                                               MinWidth="100" FontSize="20"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+
+                                        <GridViewColumn>
+                                            <GridViewColumn.Header>
+                                                <Button Content="{lex:Loc Key=delete}" 
+                                            MinWidth="100" 
+                                            Style="{DynamicResource calcBtn1}"/>
+                                            </GridViewColumn.Header>
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Border Style="{StaticResource imag_border}"
+                                                        Width="40" Height="40"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Grid.Column="8">
+                                                        <Image Source="delete.png"
+                                                           ToolTip="Delete"
+                                                           MouseDown="delete_reg_store_item_img"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+
+
+                            </ListView>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+                
+            </Border>
+
+
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SalesDS" targetNamespace="http://tempuri.org/SalesDS.xsd" xmlns:mstns="http://tempuri.org/SalesDS.xsd" xmlns="http://tempuri.org/SalesDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FoodDbConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FoodDbConnectionString1 (Settings)" PropertyReference="ApplicationSettings.SalesManagement.Properties.Settings.GlobalReference.Default.FoodDbConnectionString1" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="FoodDbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="FoodDbConnectionString (Settings)" PropertyReference="ApplicationSettings.SalesManagement.Properties.Settings.GlobalReference.Default.FoodDbConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SalesTableAdapter" GeneratorDataComponentClassName="SalesTableAdapter" Name="Sales" UserDataComponentName="SalesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="FoodDbConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Sales.ID, Sales.no_food, Sales.price, Sales.operation_date, 
+                Food.food, Categ.cate, Sales.order_no, Users.ID, Users.user_name 
+                FROM Users RIGHT JOIN (Categ RIGHT JOIN (Food RIGHT JOIN Sales ON Food.ID = Sales.food_id) 
+                ON Categ.ID = Food.categ) ON Users.ID = Sales.user_id</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Sales.ID" DataSetColumn="Sales_ID" />
+              <Mapping SourceColumn="no_food" DataSetColumn="no_food" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="operation_date" DataSetColumn="operation_date" />
+              <Mapping SourceColumn="food" DataSetColumn="food" />
+              <Mapping SourceColumn="cate" DataSetColumn="cate" />
+              <Mapping SourceColumn="order_no" DataSetColumn="order_no" />
+              <Mapping SourceColumn="Users.ID" DataSetColumn="Users_ID" />
+              <Mapping SourceColumn="user_name" DataSetColumn="user_name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SalesDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SalesDS" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SalesDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Sales" msprop:Generator_RowEvHandlerName="SalesRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesRowDeleted" msprop:Generator_RowDeletingName="SalesRowDeleting" msprop:Generator_RowEvArgName="SalesRowChangeEvent" msprop:Generator_TablePropName="Sales" msprop:Generator_RowChangedName="SalesRowChanged" msprop:Generator_RowChangingName="SalesRowChanging" msprop:Generator_TableClassName="SalesDataTable" msprop:Generator_RowClassName="SalesRow" msprop:Generator_TableVarName="tableSales" msprop:Generator_UserTableName="Sales">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Sales_ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msdata:Caption="Sales.ID" msprop:Generator_ColumnPropNameInRow="Sales_ID" msprop:Generator_ColumnPropNameInTable="Sales_IDColumn" msprop:Generator_ColumnVarNameInTable="columnSales_ID" msprop:Generator_UserColumnName="Sales_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="no_food" msprop:Generator_ColumnPropNameInRow="no_food" msprop:Generator_ColumnPropNameInTable="no_foodColumn" msprop:Generator_ColumnVarNameInTable="columnno_food" msprop:Generator_UserColumnName="no_food" type="xs:int" minOccurs="0" />
+              <xs:element name="price" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="operation_date" msprop:Generator_ColumnPropNameInRow="operation_date" msprop:Generator_ColumnPropNameInTable="operation_dateColumn" msprop:Generator_ColumnVarNameInTable="columnoperation_date" msprop:Generator_UserColumnName="operation_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="food" msprop:Generator_ColumnPropNameInRow="food" msprop:Generator_ColumnPropNameInTable="foodColumn" msprop:Generator_ColumnVarNameInTable="columnfood" msprop:Generator_UserColumnName="food" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cate" msprop:Generator_ColumnPropNameInRow="cate" msprop:Generator_ColumnPropNameInTable="cateColumn" msprop:Generator_ColumnVarNameInTable="columncate" msprop:Generator_UserColumnName="cate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="order_no" msprop:Generator_ColumnPropNameInRow="order_no" msprop:Generator_ColumnPropNameInTable="order_noColumn" msprop:Generator_ColumnVarNameInTable="columnorder_no" msprop:Generator_UserColumnName="order_no" type="xs:int" minOccurs="0" />
+              <xs:element name="Users_ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msdata:Caption="Users.ID" msprop:Generator_ColumnPropNameInRow="Users_ID" msprop:Generator_ColumnPropNameInTable="Users_IDColumn" msprop:Generator_ColumnVarNameInTable="columnUsers_ID" msprop:Generator_UserColumnName="Users_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="user_name" msprop:Generator_ColumnPropNameInRow="user_name" msprop:Generator_ColumnPropNameInTable="user_nameColumn" msprop:Generator_ColumnVarNameInTable="columnuser_name" msprop:Generator_UserColumnName="user_name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
